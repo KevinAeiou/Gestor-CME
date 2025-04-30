@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import normalizarTexto from "../../utilitarios/stringUtils";
 
 function OpcoesMenu() {
     const TODAS_AS_OPCOES = {
@@ -12,12 +13,6 @@ function OpcoesMenu() {
         'Administrador': 'ADMINISTRADOR',
         'Tecnico': 'TECNICO',
         'Enfermagem': 'ENFERMAGEM'
-    };
-    const normalizarTexto = (texto) => {
-        return texto.normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/ç/g, 'c')
-            .replace(/Ç/g, 'C');
     };
     const funcao = localStorage.getItem('user_funcao')
     const funcaoNormalizada = funcao ? normalizarTexto(funcao) : null;

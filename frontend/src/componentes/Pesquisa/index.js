@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getMateriais } from '../../servicos/materiais';
 import Etapa from '../Etapa';
 import RelatorioDropDrown from '../RelatorioDropDown';
+import normalizarTexto from '../../utilitarios/stringUtils';
 
 const PesquisaContainer = styled.section`
     background-color: #ff6616;
@@ -49,6 +50,7 @@ function Pesquisa() {
         },
     ]
     const funcao = localStorage.getItem('user_funcao')
+    const funcaoNormalizada = funcao ? normalizarTexto(funcao) : '';
     const [materiais_pesquisados, setMateriaisPesquisados] = useState([])
     const [materiais_API, setMateriaisAPI] = useState([])
     const [etapas_API, setEtapasAPI] = useState([])
@@ -114,7 +116,7 @@ function Pesquisa() {
                         etapa= {etapa_material}
                         etapas_api= {etapas_API}
                         materiais_pesquisados = {materiais_pesquisados.filter(material => material.etapa == etapa_material.nome)}
-                        funcao= {funcao}
+                        funcao= {funcaoNormalizada}
                     />
                 )}
             )}
