@@ -1,27 +1,38 @@
 Gestor-CME - Sistema de Gerenciamento para Central de Material e Esterilização
+
 🚀 Visão Geral
+
 O Gestor-CME é uma solução web completa desenvolvida para otimizar e modernizar os processos críticos de uma Central de Material e Esterilização (CME). Nossa plataforma integrada oferece:
 
-Controle completo do fluxo de materiais esterilizados
+ - Controle completo do fluxo de materiais esterilizados
 
-Gestão de ciclos de esterilização
+ - Gestão de ciclos de esterilização
 
-Rastreabilidade de instrumentais
+ - Rastreabilidade de instrumentais
 
-Relatórios automatizados
+ - Relatórios automatizados
 
-Interface intuitiva para equipes técnicas
+ - Interface intuitiva para equipes técnicas
 
 Tecnologias principais:
-JavaScript Python Docker HTML
+
+![JavaScript](https://img.shields.io/badge/JavaScript-60.4%25-yellow)
+![Python](https://img.shields.io/badge/Python-37.2%25-blue)
+![Docker](https://img.shields.io/badge/Docker-1.6%25-lightblue)
+![HTML](https://img.shields.io/badge/HTML-0.8%25-orange)
 
 🛠 Configuração do Ambiente
-Pré-requisitos
-Ferramenta	Versão Mínima	Como Verificar
-Docker	20.10+	docker --version
-Docker Compose	1.29+	docker-compose --version
-Git	Última	git --version
+
+## Pré-requisitos
+
+| Ferramenta       | Versão Mínima | Como Verificar         |
+|------------------|---------------|------------------------|
+| Docker           | 20.10+        | `docker --version`     |
+| Docker Compose   | 1.29+         | `docker-compose --version` |
+| Git              | Última        | `git --version`        |
+
 ⚙️ Instalação Passo a Passo
+
 Clonar o repositório
 
 bash
