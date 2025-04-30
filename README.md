@@ -63,20 +63,31 @@ Frontend: http://localhost:3000
 Admin Django: http://localhost:8000/admin
 
 📂 Estrutura do Projeto
-Gestor-CME/\n
+Gestor-CME/
+
 ├── backend/               # API Django (Python)
 
 │   ├── app/               # Aplicação principal
+
 │   ├── manage.py          # Script de administração
+
 │   └── requirements.txt   # Dependências Python
+
 │
+
 ├── frontend/              # Aplicação React (JavaScript)
+
 │   ├── public/            # Assets estáticos
+
 │   └── src/               # Código-fonte
+
 │
 ├── docker-compose.yml     # Orquestração de containers
+
 ├── .env                   # Variáveis de ambiente
+
 └── README.md              # Documentação
+
 🔧 Troubleshooting
 Problema: Erro ao acessar o container
 Solução: Use sh ao invés de bash:
