@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const processamentoAPI = axios.create({baseURL: 'http://localhost:8000/processamento'})
-const cadastroAPI = axios.create({baseURL: 'http://localhost:8000/cadastrarmateriais'})
+const processamentoAPI = axios.create({baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/processamento'})
+const cadastroAPI = axios.create({baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/cadastrarmateriais'})
 
 async function getMateriais() {
     try{
