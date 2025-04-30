@@ -35,8 +35,8 @@ Tecnologias principais:
 
 1. Clonar o repositório
 
-    git clone https://github.com/seu-usuario/Gestor-CME.git
-    cd Gestor-CME
+        git clone https://github.com/seu-usuario/Gestor-CME.git
+        cd Gestor-CME
 
 2. Configurar variáveis de ambiente
 
@@ -45,37 +45,34 @@ Tecnologias principais:
     Edite o arquivo .env com:
 
     # Chave de segurança
-    SECRET_KEY=sua_chave_gerada_aqui
+        SECRET_KEY=sua_chave_gerada_aqui
 
     # Configurações da API
-    REACT_APP_API_URL=http://backend:8000
+        REACT_APP_API_URL=http://backend:8000
 
     DEBUG=True  # Desative em produção
 
     Como gerar a SECRET_KEY:
 
-    python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+        python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 
 
 3. Iniciar os containers
 
-    bash
-
-    docker-compose up -d --build
+        docker-compose up -d --build
     Configurar superusuário
 
-    bash
-
-    docker-compose exec backend sh -c "python manage.py createsuperuser"
+        docker-compose exec backend sh -c "python manage.py createsuperuser"
     Padrão de senha automática:
+
     #<3PRIMEIRAS_LETRAS_DA_FUNCAO>-< NOME>
 
     Exemplo:
 
-    Email: admin@cme.com
-    Nome: João
-    Função: Administrador
-    Senha: #ADM-João
+        Email:admin@cme.com
+        Nome: Pedro
+        Função: Administrador
+        Senha: #ADM-Pedro
 
 Acessar o sistema
 
@@ -85,6 +82,7 @@ Admin Django: http://localhost:8000/admin
 
 📂 Estrutura do Projeto
 Gestor-CME/
+
     ├── backend/               # API Django (Python)
     │   ├── app/               # Aplicação principal
     │   ├── manage.py          # Script de administração
@@ -104,14 +102,12 @@ Problema: Erro ao acessar o container
 
 Solução: Use sh ao invés de bash:
 
-bash
     docker-compose exec backend sh
 
 Problema: Portas já em uso
 
 Solução: Altere as portas no .env:
 
-ini
     FRONTEND_PORT=3001
     BACKEND_PORT=8001
 🤝 Contribuição
