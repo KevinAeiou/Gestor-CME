@@ -63,8 +63,9 @@ Frontend: http://localhost:3000
 Admin Django: http://localhost:8000/admin
 
 📂 Estrutura do Projeto
-Gestor-CME/
+Gestor-CME/\n
 ├── backend/               # API Django (Python)
+
 │   ├── app/               # Aplicação principal
 │   ├── manage.py          # Script de administração
 │   └── requirements.txt   # Dependências Python
