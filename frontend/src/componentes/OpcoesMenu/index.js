@@ -13,11 +13,19 @@ function OpcoesMenu() {
         'Tecnico': 'TECNICO',
         'Enfermagem': 'ENFERMAGEM'
     };
+    const normalizarTexto = (texto) => {
+        return texto.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/ç/g, 'c')
+            .replace(/Ç/g, 'C');
+    };
     const funcao = localStorage.getItem('user_funcao')
+    const funcaoNormalizada = funcao ? normalizarTexto(funcao) : null;
+
     return useMemo(() => {
-        const tipoFuncao = MAPEAMENTO_FUNCOES[funcao] || 'PADRAO';
+        const tipoFuncao = MAPEAMENTO_FUNCOES[funcaoNormalizada] || 'PADRAO';
         return TODAS_AS_OPCOES[tipoFuncao];
-    }, [funcao]);
+    }, [funcaoNormalizada]);
 }
 
 export default OpcoesMenu;
