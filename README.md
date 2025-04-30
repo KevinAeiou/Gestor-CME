@@ -84,7 +84,7 @@ Frontend: http://localhost:3000
 Admin Django: http://localhost:8000/admin
 
 📂 Estrutura do Projeto
-    Gestor-CME/
+Gestor-CME/
     ├── backend/               # API Django (Python)
     │   ├── app/               # Aplicação principal
     │   ├── manage.py          # Script de administração
@@ -104,14 +104,16 @@ Problema: Erro ao acessar o container
 
 Solução: Use sh ao invés de bash:
 
-    bash
-        docker-compose exec backend sh
+bash
+    docker-compose exec backend sh
 
 Problema: Portas já em uso
+
 Solução: Altere as portas no .env:
-    ini
-        FRONTEND_PORT=3001
-        BACKEND_PORT=8001
+
+ini
+    FRONTEND_PORT=3001
+    BACKEND_PORT=8001
 🤝 Contribuição
 
     Faça um fork do projeto
