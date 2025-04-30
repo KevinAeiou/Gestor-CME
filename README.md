@@ -84,56 +84,45 @@ Frontend: http://localhost:3000
 Admin Django: http://localhost:8000/admin
 
 📂 Estrutura do Projeto
-Gestor-CME/
-
-├── backend/               # API Django (Python)
-
-    │       ├── app/               # Aplicação principal
-
-    │       ├── manage.py          # Script de administração
-
-│       └── requirements.txt   # Dependências Python
-
-│
-
-├── frontend/              # Aplicação React (JavaScript)
-
-│       ├── public/            # Assets estáticos
-
-│      └── src/               # Código-fonte
-
-│
-├── docker-compose.yml     # Orquestração de containers
-
-├── .env                   # Variáveis de ambiente
-
-└── README.md              # Documentação
+    Gestor-CME/
+    ├── backend/               # API Django (Python)
+    │   ├── app/               # Aplicação principal
+    │   ├── manage.py          # Script de administração
+    │   └── requirements.txt   # Dependências Python
+    │
+    ├── frontend/              # Aplicação React (JavaScript)
+    │   ├── public/            # Assets estáticos
+    │   └── src/               # Código-fonte
+    │
+    ├── docker-compose.yml     # Orquestração de containers
+    ├── .env                   # Variáveis de ambiente
+    └── README.md              # Documentação
 
 🔧 Troubleshooting
 
-    Problema: Erro ao acessar o container
+Problema: Erro ao acessar o container
 
-    Solução: Use sh ao invés de bash:
+Solução: Use sh ao invés de bash:
 
-        bash
+    bash
         docker-compose exec backend sh
 
-    Problema: Portas já em uso
-        Solução: Altere as portas no .env:
-
-            ini
-            FRONTEND_PORT=3001
-            BACKEND_PORT=8001
+Problema: Portas já em uso
+Solução: Altere as portas no .env:
+    ini
+        FRONTEND_PORT=3001
+        BACKEND_PORT=8001
 🤝 Contribuição
-Faça um fork do projeto
 
-Crie uma branch (git checkout -b feature/nova-funcionalidade)
+    Faça um fork do projeto
 
-Commit suas mudanças (git commit -m 'Adiciona nova funcionalidade')
+    Crie uma branch (git checkout -b feature/nova-funcionalidade)
 
-Push para a branch (git push origin feature/nova-funcionalidade)
+    Commit suas mudanças (git commit -m 'Adiciona nova funcionalidade')
 
-Abra um Pull Request
+    Push para a branch (git push origin feature/nova-funcionalidade)
+
+    Abra um Pull Request
 
 📞 Suporte
 Para reportar problemas ou sugerir melhorias:
