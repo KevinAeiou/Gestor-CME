@@ -1,11 +1,15 @@
 import axios from "axios"
 
-const processamentoAPI = axios.create({baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/processamento'})
-const cadastroAPI = axios.create({baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/cadastrarmateriais'})
+const baseURL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:8000' 
+  : process.env.REACT_APP_API_URL;
+
+const processamentoAPI = axios.create({ baseURL: baseURL })
+const cadastroAPI = axios.create({ baseURL: baseURL })
 
 async function getMateriais() {
     try{
-        const response = await processamentoAPI.get('/')
+        const response = await processamentoAPI.get('/processamento/')
         console.log('Materiais recuperados com sucesso!')
         return response.data
     } catch {
@@ -16,7 +20,7 @@ async function getMateriais() {
 
 async function postMaterial(novoMaterial) {
     try {
-        const response = await cadastroAPI.post('/', novoMaterial);
+        const response = await cadastroAPI.post('/cadastrarmateriais/', novoMaterial);
         console.log('Material cadastrado com sucesso!', response.data);
         return response.data;
     } catch (error) {
@@ -27,7 +31,7 @@ async function postMaterial(novoMaterial) {
 
 async function patchMaterial(id, material) {
     try {
-        const response = await processamentoAPI.patch(`/${id}/`, material)
+        const response = await processamentoAPI.patch(`/processamento/${id}/`, material)
         console.log('Material atualizado com sucesso: ', response.data)
         return response.data
     } catch (error) {
@@ -37,7 +41,7 @@ async function patchMaterial(id, material) {
 }
 async function gerarRelatorio(formato) {
     try {
-        const response = await processamentoAPI.get('/relatorio/gerar', {
+        const response = await processamentoAPI.get('/processamento/relatorio/gerar', {
             params: { formato },
             responseType: 'blob'
         })
