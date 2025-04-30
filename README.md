@@ -49,7 +49,8 @@ Configurar superusuário
 bash
 docker-compose exec backend sh -c "python manage.py createsuperuser"
 Padrão de senha automática:
-#<3PRIMEIRAS_LETRAS_DA_FUNCAO>-<NOME>
+#<3PRIMEIRAS_LETRAS_DA_FUNCAO>-< NOME>
+
 Exemplo:
 
 Email: admin@cme.com
@@ -67,19 +68,19 @@ Gestor-CME/
 
 ├── backend/               # API Django (Python)
 
-│   ├── app/               # Aplicação principal
+│       ├── app/               # Aplicação principal
 
-│   ├── manage.py          # Script de administração
+│       ├── manage.py          # Script de administração
 
-│   └── requirements.txt   # Dependências Python
+│       └── requirements.txt   # Dependências Python
 
 │
 
 ├── frontend/              # Aplicação React (JavaScript)
 
-│   ├── public/            # Assets estáticos
+│       ├── public/            # Assets estáticos
 
-│   └── src/               # Código-fonte
+│      └── src/               # Código-fonte
 
 │
 ├── docker-compose.yml     # Orquestração de containers
@@ -113,7 +114,7 @@ Abra um Pull Request
 
 📞 Suporte
 Para reportar problemas ou sugerir melhorias:
-📧 email@provedor.com
+📧 kevin.souzaeiou@outlook.com
 📌 Issues no GitHub
 
 Nota: Garanta que o Docker Desktop esteja em execução antes de iniciar os containers. Para ambientes de produção, configure adequadamente as variáveis de segurança e desative o modo DEBUG.
