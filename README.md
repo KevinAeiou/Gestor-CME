@@ -1,70 +1,107 @@
-Gestor-CME - Gerenciamento de Processos de CME
-Sobre o Projeto
-O Gestor-CME é uma aplicação web desenvolvida para gerenciar os processos essenciais de uma Central de Material e Esterilização (CME). O projeto utiliza tecnologias como JavaScript, Python e Docker para fornecer uma solução eficiente e escalável.
+Gestor-CME - Sistema de Gerenciamento para Central de Material e Esterilização
+🚀 Visão Geral
+O Gestor-CME é uma solução web completa desenvolvida para otimizar e modernizar os processos críticos de uma Central de Material e Esterilização (CME). Nossa plataforma integrada oferece:
 
-Configuração do Ambiente
+Controle completo do fluxo de materiais esterilizados
+
+Gestão de ciclos de esterilização
+
+Rastreabilidade de instrumentais
+
+Relatórios automatizados
+
+Interface intuitiva para equipes técnicas
+
+Tecnologias principais:
+JavaScript Python Docker HTML
+
+🛠 Configuração do Ambiente
 Pré-requisitos
-Docker (versão 20.10 ou superior)
-
-Docker Compose (versão 1.29 ou superior)
-
-Git (para clonar o repositório)
-
-Instalação
-Clone o repositório:
+Ferramenta	Versão Mínima	Como Verificar
+Docker	20.10+	docker --version
+Docker Compose	1.29+	docker-compose --version
+Git	Última	git --version
+⚙️ Instalação Passo a Passo
+Clonar o repositório
 
 bash
 git clone https://github.com/seu-usuario/Gestor-CME.git
 cd Gestor-CME
-Configure as variáveis de ambiente:
+Configurar variáveis de ambiente
 
-Crie um arquivo .env na raiz do projeto baseado no exemplo .env.example (se existir).
+bash
+cp .env.example .env
+Edite o arquivo .env com:
 
-Preencha as variáveis necessárias, como credenciais de banco de dados e configurações da aplicação.
+ini
+# Chave de segurança (gerar nova com:)
+SECRET_KEY=$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")
 
-Construa e execute os containers com Docker Compose:
+# Configurações da API
+REACT_APP_API_URL=http://backend:8000
+DEBUG=True  # Desative em produção
+Iniciar os containers
 
 bash
 docker-compose up -d --build
-Isso irá construir as imagens e iniciar os serviços definidos no docker-compose.yml.
+Configurar superusuário
 
-Acesse a aplicação:
+bash
+docker-compose exec backend sh -c "python manage.py createsuperuser"
+Padrão de senha automática:
+#<3PRIMEIRAS_LETRAS_DA_FUNCAO>-<NOME>
+Exemplo:
 
-A aplicação estará disponível em http://localhost:3000 (ou na porta configurada no Docker Compose).
+Email: admin@cme.com
+Nome: João Silva
+Função: Administrador
+Senha: #ADM-João
+Acessar o sistema
 
-Estrutura do Projeto
-backend: Contém a lógica de back-end escrita em Python.
+Frontend: http://localhost:3000
 
-frontend: Contém a interface do usuário desenvolvida em JavaScript/HTML.
+Admin Django: http://localhost:8000/admin
 
-dockerignore e gitignore: Arquivos de configuração para ignorar arquivos desnecessários.
+📂 Estrutura do Projeto
+Gestor-CME/
+├── backend/               # API Django (Python)
+│   ├── app/               # Aplicação principal
+│   ├── manage.py          # Script de administração
+│   └── requirements.txt   # Dependências Python
+│
+├── frontend/              # Aplicação React (JavaScript)
+│   ├── public/            # Assets estáticos
+│   └── src/               # Código-fonte
+│
+├── docker-compose.yml     # Orquestração de containers
+├── .env                   # Variáveis de ambiente
+└── README.md              # Documentação
+🔧 Troubleshooting
+Problema: Erro ao acessar o container
+Solução: Use sh ao invés de bash:
 
-docker-compose.yml: Configuração dos serviços Docker para a aplicação.
+bash
+docker-compose exec backend sh
+Problema: Portas já em uso
+Solução: Altere as portas no .env:
 
-Linguagens Utilizadas
-JavaScript (60.4%)
+ini
+FRONTEND_PORT=3001
+BACKEND_PORT=8001
+🤝 Contribuição
+Faça um fork do projeto
 
-Python (37.2%)
+Crie uma branch (git checkout -b feature/nova-funcionalidade)
 
-Dockerfile (1.6%)
+Commit suas mudanças (git commit -m 'Adiciona nova funcionalidade')
 
-HTML (0.9%)
+Push para a branch (git push origin feature/nova-funcionalidade)
 
-Contribuição
-Contribuições são bem-vindas! Siga os passos abaixo:
+Abra um Pull Request
 
-Faça um fork do projeto.
+📞 Suporte
+Para reportar problemas ou sugerir melhorias:
+📧 email@provedor.com
+📌 Issues no GitHub
 
-Crie uma branch para sua feature (git checkout -b feature/nova-feature).
-
-Commit suas mudanças (git commit -m 'Adiciona nova feature').
-
-Push para a branch (git push origin feature/nova-feature).
-
-Abra um Pull Request.
-
-Licença
-Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-
-Contato
-Para dúvidas ou sugestões, entre em contato através do repositório ou do e-mail do mantenedor.
+Nota: Garanta que o Docker Desktop esteja em execução antes de iniciar os containers. Para ambientes de produção, configure adequadamente as variáveis de segurança e desative o modo DEBUG.
