@@ -33,25 +33,31 @@ Tecnologias principais:
 
 ⚙️ Instalação Passo a Passo
 
-Clonar o repositório
+1. Clonar o repositório
 
-bash
 git clone https://github.com/seu-usuario/Gestor-CME.git
 cd Gestor-CME
-Configurar variáveis de ambiente
 
-bash
-cp .env.example .env
+2. Configurar variáveis de ambiente
+
+Crie um arquivo .env na raiz do projeto.
+
 Edite o arquivo .env com:
 
-ini
-# Chave de segurança (gerar nova com:)
-SECRET_KEY=$(python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())")
+# Chave de segurança
+SECRET_KEY=sua_chave_gerada_aqui
 
 # Configurações da API
 REACT_APP_API_URL=http://backend:8000
+
 DEBUG=True  # Desative em produção
-Iniciar os containers
+
+Como gerar a SECRET_KEY:
+
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+
+3. Iniciar os containers
 
 bash
 docker-compose up -d --build
