@@ -29,8 +29,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'apps.usuarios.apps.UsuariosConfig',
-    'apps.materiais.apps.MateriaisConfig',
+    'cme.usuarios.apps.UsuariosConfig',
+    'cme.materiais.apps.MateriaisConfig',
 ]
 
 MIDDLEWARE = [
