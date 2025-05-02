@@ -24,12 +24,6 @@ const MaterialTipo = styled.h5`
     color: #212121;
     padding: 0 16px;
 `
-const MaterialData = styled.h5`
-    font-size: 18px;
-    line-height: 22px;
-    color: #212121;
-    padding: 0 16px;
-`
 const MaterialSerial = styled.h5`
     font-size: 18px;
     line-height: 22px;

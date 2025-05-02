@@ -1,26 +1,11 @@
-import styled from "styled-components";
 import { useState } from "react";
 import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
+import FormularioConteiner from "../FormularioConteiner";
+import FormularioCampos from "../FormularioCampos";
+import Titulo from "../Titulo";
 
-const FormularioMaterialContainer = styled.section`
-    display: flex;
-    justify-content: center;
-`
-
-const FormularioContainer = styled.section`
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
-`
-const FormularioCampos = styled.form`
-    max-width: 80%;
-    background-color: #F2F2F2;
-    border-radius: 20px;
-    padding: 36px 64px;
-    box-shadow: 8px 8px 16px rgba(0, 0 ,0, 0.08);
-`
 
 function FormularioMaterial(props) {
     const aoCriar = (evento) => {
@@ -57,37 +42,35 @@ function FormularioMaterial(props) {
     }
 
     return (
-        <FormularioMaterialContainer>
-            <FormularioContainer>
-                <FormularioCampos onSubmit={aoCriar}>
-                    <h2>Cadastrar novo material</h2>
-                    <CampoTexto 
-                        obrigatorio={true} 
-                        label= 'Nome' 
-                        placeholder= 'Nome do material'
-                        valor= {nome}
-                        aoAlterado= {valor => setNome(valor)}
-                    />
-                    <CampoTexto 
-                        obrigatorio={true} 
-                        label= 'Validade' 
-                        placeholder= 'DD/MM/AAAA'
-                        valor= {data}
-                        aoAlterado= {valor => setData(formatarData(valor))}
-                    />
-                    <ListaSuspensa 
-                        obrigatorio={true} 
-                        titulo= 'Tipos' 
-                        itens= {props.tipos}
-                        valor= {tipo}
-                        aoAlterado= {valor => setTipo(valor)}
-                    />
-                    <Botao >
-                        Cadastrar material
-                    </Botao>
-                </FormularioCampos>
-            </FormularioContainer>
-        </FormularioMaterialContainer>
+        <FormularioConteiner>
+            <FormularioCampos onSubmit={aoCriar}>
+                <Titulo>Cadastrar novo material</Titulo>
+                <CampoTexto 
+                    obrigatorio={true} 
+                    label= 'Nome' 
+                    placeholder= 'Nome do material'
+                    valor= {nome}
+                    aoAlterado= {valor => setNome(valor)}
+                />
+                <CampoTexto 
+                    obrigatorio={true} 
+                    label= 'Validade' 
+                    placeholder= 'DD/MM/AAAA'
+                    valor= {data}
+                    aoAlterado= {valor => setData(formatarData(valor))}
+                />
+                <ListaSuspensa 
+                    obrigatorio={true} 
+                    titulo= 'Tipos' 
+                    itens= {props.tipos}
+                    valor= {tipo}
+                    aoAlterado= {valor => setTipo(valor)}
+                />
+                <Botao >
+                    Cadastrar material
+                </Botao>
+            </FormularioCampos>
+        </FormularioConteiner>
     )
 }
 

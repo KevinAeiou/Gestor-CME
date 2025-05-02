@@ -6,7 +6,9 @@ import { autenticaUsuario } from "../servicos/usuarios";
 
 
 const ConteinerEntrar = styled.div`
-    
+    width: 100vw;
+    height: 100vw;
+    background-image: linear-gradient(90deg, #fff, #ff6616 165%);
 `
 
 function Entrar() {

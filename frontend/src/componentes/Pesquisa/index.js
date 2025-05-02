@@ -64,7 +64,7 @@ function Pesquisa() {
     const combinarMateriaisComEtapas = (materiais, etapas) => {
         return materiais.map(material => {
             const etapa_correspondente = etapas.find(
-                etapa => etapa.serial == material.serial
+                etapa => etapa.serial === material.serial
             )
             return {
                 ...material, 
@@ -115,7 +115,7 @@ function Pesquisa() {
                         key={etapa_material.nome}
                         etapa= {etapa_material}
                         etapas_api= {etapas_API}
-                        materiais_pesquisados = {materiais_pesquisados.filter(material => material.etapa == etapa_material.nome)}
+                        materiais_pesquisados = {materiais_pesquisados.filter(material => material.etapa === etapa_material.nome)}
                         funcao= {funcaoNormalizada}
                     />
                 )}

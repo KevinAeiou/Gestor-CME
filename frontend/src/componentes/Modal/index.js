@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import { useState } from "react";
-import { FaBoxOpen, FaChevronRight } from 'react-icons/fa';
+import { FaBoxOpen } from 'react-icons/fa';
 
 const ModalOverlay = styled.div`
     position: fixed;

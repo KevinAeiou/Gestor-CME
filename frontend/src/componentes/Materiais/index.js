@@ -22,7 +22,7 @@ const MateriaisConteinerCards = styled.div`
 
 function Materiais({ materiais, nome, cor_primaria, cor_secundaria, etapas_api, funcao }) {
     const encontrarEtapaAPI = (material_etapa, material_serial) => {
-        return etapas_api.find(etapa => etapa.etapa == material_etapa && etapa.serial == material_serial) || {}
+        return etapas_api.find(etapa => etapa.etapa === material_etapa && etapa.serial === material_serial) || {}
     }
 
     return (

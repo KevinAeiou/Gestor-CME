@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { gerarRelatorio } from '../../servicos/materiais';
-import { FaFilePdf, FaFileExcel } from 'react-icons/fa';
+import { FaFilePdf } from 'react-icons/fa';
 import { saveAs } from 'file-saver';
 
 
