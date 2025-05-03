@@ -31,12 +31,23 @@ async function postMaterial(novoMaterial) {
 
 async function patchMaterial(id, material) {
     try {
-        const response = await processamentoAPI.patch(`/processamento/${id}/`, material)
+        const response = await processamentoAPI.patch(`/processamento/alterar/${id}/`, material)
         console.log('Material atualizado com sucesso: ', response.data)
         return response.data
     } catch (error) {
         console.error('Erro ao atualizar material: ', error.response?.data || error.message);
         throw error;
+    }
+}
+
+async function deleteMaterial(id) {
+    try {
+        const response = await processamentoAPI.delete(`/processamento/deletar/${id}/`)
+        console.log('Material deletado com sucesso: ', response.data)
+        return response.data
+    } catch (erro) {
+        console.error('Erro ao deletar material: ', erro.response?.data || erro.message)
+        throw erro
     }
 }
 async function gerarRelatorio(formato) {
@@ -56,5 +67,6 @@ export {
     getMateriais,
     postMaterial,
     patchMaterial,
+    deleteMaterial,
     gerarRelatorio,
 }

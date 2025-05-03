@@ -5,7 +5,7 @@ import Materiais from '../Materiais'
 const EtapaConteiner = styled.div`
 `
 
-function Etapa({ etapa, materiais_pesquisados, etapas_api, funcao }) {
+function Etapa({ etapa, materiais_pesquisados, etapas_api, funcao, aoMaterialListaModificado }) {
     
     return (
         <EtapaConteiner>
@@ -17,6 +17,7 @@ function Etapa({ etapa, materiais_pesquisados, etapas_api, funcao }) {
                 materiais= {materiais_pesquisados}
                 etapas_api={etapas_api}
                 funcao= {funcao}
+                aoMaterialListaModificado= {aoMaterialListaModificado}
             />
         </EtapaConteiner>
     )

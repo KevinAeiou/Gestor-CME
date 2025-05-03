@@ -1,37 +1,11 @@
 import { useState } from "react";
-import styled from "styled-components";
 import Modal from "../Modal";
-import { patchMaterial } from "../../servicos/materiais";
+import { deleteMaterial, patchMaterial } from "../../servicos/materiais";
+import CardMaterial from "../CardMaterial";
+import ModalMensagem from "../ModalMensagem";
 
-const MaterialConteiner = styled.div`
-    width: 280px;
-    background: #FFFFFF;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
-    border-radius: 0px 0px 10px 10px;
-    padding-top: 90px;
-    padding-bottom: 40px;
-`
-const MaterialNome = styled.h4`
-    color: #6278F7;
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: bold;
-    margin-bottom: 8px;
-`
-const MaterialTipo = styled.h5`
-    font-size: 18px;
-    line-height: 22px;
-    color: #212121;
-    padding: 0 16px;
-`
-const MaterialSerial = styled.h5`
-    font-size: 18px;
-    line-height: 22px;
-    color: #212121;
-    padding: 0 16px;
-`
 
-function Material({ serial, nome, tipo, data, etapa_material, funcao }) {
+function Material({ serial, nome, tipo, data, etapa_material, funcao, aoMaterialListaModificado }) {
     const [modalEstaAberto, setModalEstaAberto] = useState(false);
     const etapas = [
         {
@@ -57,20 +31,36 @@ function Material({ serial, nome, tipo, data, etapa_material, funcao }) {
             console.log('Material modificado: ', materialModificado)
             setModalEstaAberto(false)
             alert('Material modificado com sucesso!')
+            aoMaterialListaModificado && aoMaterialListaModificado()
         } catch (erro) {
             const menssagem = erro.response?.data || erro.message || 'Erro ao modificar material!'
             console.error('Erro ao atualizar material: ', menssagem);
             alert(menssagem.error)
         }
     }
+    const aoMaterialDeletado = async (material) => {
+        try {
+            const materialDeletado = await deleteMaterial(material.serial)
+            console.log('Material removido com sucesso: ', materialDeletado)
+            alert('Material  deletado com sucesso!')
+            aoMaterialListaModificado && aoMaterialListaModificado()
+        } catch (erro) {
+            const menssagem = erro.response?.data || erro.message || 'Erro ao deletar material!'
+            console.error('Erro ao deletar material: ', menssagem);
+            alert(menssagem.error)
+        }
+    }
+
     return (
         <>
-            <MaterialConteiner onClick={() => setModalEstaAberto(true)}>
-                <MaterialSerial>{serial}</MaterialSerial>
-                <MaterialNome>{nome}</MaterialNome>
-                <MaterialTipo>{tipo}</MaterialTipo>
-            </MaterialConteiner>
-            <Modal 
+            <CardMaterial 
+                serial= {serial}
+                nome= {nome}
+                tipo= {tipo}
+                aoMaterialDeletado={material => aoMaterialDeletado(material)}
+                aoFechar= {() => setModalEstaAberto(true)}
+            />
+            <Modal
                 estaAberto = {modalEstaAberto}
                 aoFechar= {() => setModalEstaAberto(false)}
                 titulo={serial}

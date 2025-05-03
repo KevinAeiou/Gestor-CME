@@ -20,7 +20,7 @@ const MateriaisConteinerCards = styled.div`
     flex-wrap: wrap;
 `
 
-function Materiais({ materiais, nome, cor_primaria, cor_secundaria, etapas_api, funcao }) {
+function Materiais({ materiais, nome, cor_primaria, cor_secundaria, etapas_api, funcao, aoMaterialListaModificado }) {
     const encontrarEtapaAPI = (material_etapa, material_serial) => {
         return etapas_api.find(etapa => etapa.etapa === material_etapa && etapa.serial === material_serial) || {}
     }
@@ -44,6 +44,7 @@ function Materiais({ materiais, nome, cor_primaria, cor_secundaria, etapas_api, 
                             data= {material.data}
                             etapa_material= {etapa_api_correspondente}
                             funcao= {funcao}
+                            aoMaterialListaModificado= {aoMaterialListaModificado}
                         />)}
                     )
                 }

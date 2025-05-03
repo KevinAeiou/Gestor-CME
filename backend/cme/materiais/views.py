@@ -36,6 +36,31 @@ def criar_material(request: Request):
     print(f'Erros de validação: {serializer_material.errors}')
     return Response(serializer_material.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['DELETE'])
+def deletar_material(request: Request, serial_id: str):
+    try:
+        if not serial_id:
+            return Response(
+                {'error': 'O campo "serial" é obrigatório!'},
+                status= status.HTTP_400_BAD_REQUEST
+            )
+        material: Material = Material.objects.get(serial= serial_id)
+        material.delete()
+        return Response(
+            {'success', f'Material {material.serial} deletado com sucesso!'},
+            status= status.HTTP_200_OK
+        )
+    except Material.DoesNotExist:
+        return Response(
+            {'error': f'Material com serial ({serial_id}) não encontrado!'},    
+            status=status.HTTP_404_NOT_FOUND
+        )
+    except Exception as e:
+        return Response(
+            {'error': f'Erro inesperado: {e}'},    
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
 def criar_etapa(material: Material, serializer_material: MaterialSerializer):
     etapa: dict= {
         'serial' : material.serial
@@ -121,7 +146,6 @@ def get_materiais(request: Request):
 class ReportGenerator(Protocol):
     def generate(self, data: list[dict]) -> BytesIO:
         ...
-
 class PDFReportGenerator:
     def generate(self, data: list[dict], title: str) -> BytesIO:
         buffer: BytesIO = BytesIO()
