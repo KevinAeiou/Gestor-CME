@@ -1,12 +1,11 @@
 import { useState } from "react";
-import Modal from "../Modal";
-import { deleteMaterial, patchMaterial } from "../../servicos/materiais";
+import ModalDetalhesMaterial from "../ModalDetalhesMaterial";
+import { patchMaterial } from "../../servicos/materiais";
 import CardMaterial from "../CardMaterial";
-import ModalMensagem from "../ModalMensagem";
 
 
 function Material({ serial, nome, tipo, data, etapa_material, funcao, aoMaterialListaModificado }) {
-    const [modalEstaAberto, setModalEstaAberto] = useState(false);
+    const [modalEstaAberto, setModalEstaAberto] = useState(false)
     const etapas = [
         {
             nome: 'Recebimento',
@@ -38,18 +37,6 @@ function Material({ serial, nome, tipo, data, etapa_material, funcao, aoMaterial
             alert(menssagem.error)
         }
     }
-    const aoMaterialDeletado = async (material) => {
-        try {
-            const materialDeletado = await deleteMaterial(material.serial)
-            console.log('Material removido com sucesso: ', materialDeletado)
-            alert('Material  deletado com sucesso!')
-            aoMaterialListaModificado && aoMaterialListaModificado()
-        } catch (erro) {
-            const menssagem = erro.response?.data || erro.message || 'Erro ao deletar material!'
-            console.error('Erro ao deletar material: ', menssagem);
-            alert(menssagem.error)
-        }
-    }
 
     return (
         <>
@@ -57,10 +44,10 @@ function Material({ serial, nome, tipo, data, etapa_material, funcao, aoMaterial
                 serial= {serial}
                 nome= {nome}
                 tipo= {tipo}
-                aoMaterialDeletado={material => aoMaterialDeletado(material)}
                 aoFechar= {() => setModalEstaAberto(true)}
+                aoMaterialListaModificado= {aoMaterialListaModificado}
             />
-            <Modal
+            <ModalDetalhesMaterial
                 estaAberto = {modalEstaAberto}
                 aoFechar= {() => setModalEstaAberto(false)}
                 titulo={serial}
@@ -74,6 +61,7 @@ function Material({ serial, nome, tipo, data, etapa_material, funcao, aoMaterial
             />
         </>
     )
+
 }
 
 export default Material;

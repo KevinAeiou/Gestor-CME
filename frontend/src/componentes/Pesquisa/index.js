@@ -96,7 +96,7 @@ function Pesquisa() {
         setEtapasAPI(dados_API.etapas)
         setMateriaisPesquisados(combinarMateriaisComEtapas(dados_API.materiais, dados_API.etapas))
     }
-    const aoMaterialListaModificado = () => {
+    const aoListaMaterialModificado = () => {
         fetchMateriais()
     }
 
@@ -119,7 +119,7 @@ function Pesquisa() {
                         etapas_api= {etapas_API}
                         materiais_pesquisados = {materiais_pesquisados.filter(material => material.etapa === etapa_material.nome)}
                         funcao= {funcaoNormalizada}
-                        aoMaterialListaModificado= {aoMaterialListaModificado}
+                        aoMaterialListaModificado= {aoListaMaterialModificado}
                     />
                 )}
             )}

@@ -3,65 +3,9 @@ import ListaSuspensa from "../ListaSuspensa";
 import Botao from "../Botao";
 import { useState } from "react";
 import { FaBoxOpen } from 'react-icons/fa';
-
-const ModalOverlay = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-`
+import { ModalBody, ModalContent, ModalHeader, ModalOverlay, ModalTitle } from "../ModalOverlay";
+import BotaoFechar from "../BotaoFechar";
     
-const ModalContent = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-`
-
-const ModalHeader = styled.div`
-    background: #ff6616;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`
-
-const ModalTitle = styled.h2`
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-`
-
-const CloseButton = styled.button`
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-`
-const MaterialNome = styled.h3`
-    color: #333;
-    font-size: 1.3rem;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-`
 const EtapasHeader = styled.div`
     display: flex;
     justify-content: space-between;
@@ -101,9 +45,6 @@ const LinhaInfo = styled.div`
 const TituloInfo = styled.span`
     font-weight: 500;
     margin-right: 5px;
-`;
-const ModalBody = styled.div`
-  padding: 20px;
 `
 const ControlesConteiner = styled.div`
     padding: 0 20px 20px;
@@ -111,8 +52,16 @@ const ControlesConteiner = styled.div`
     flex-direction: column;
     gap: 16px;
 `
+const MaterialNome = styled.h3`
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+`
     
-function Modal({estaAberto, aoFechar, titulo, nome, tipo, data, etapas, etapaAtual, aoMaterialModificado, funcao }) {
+function ModalDetalhesMaterial({ estaAberto, aoFechar, titulo, nome, tipo, data, etapas, etapaAtual, aoMaterialModificado, funcao }) {
     const [etapa, setEtapa] = useState(etapaAtual)
     if(!estaAberto) return null;
     const aoModficar = async (evento) => {
@@ -136,7 +85,7 @@ function Modal({estaAberto, aoFechar, titulo, nome, tipo, data, etapas, etapaAtu
             <ModalContent onClick={e => e.stopPropagation()}>
                 <ModalHeader>
                     <ModalTitle>{titulo}</ModalTitle>
-                    <CloseButton onClick={aoFechar}>&times;</CloseButton>
+                    <BotaoFechar onClick={aoFechar}>&times;</BotaoFechar>
                 </ModalHeader>
                 <ModalBody>
                     <MaterialInfo>
@@ -180,4 +129,4 @@ function Modal({estaAberto, aoFechar, titulo, nome, tipo, data, etapas, etapaAtu
     )
 }
 
-export default Modal;
+export default ModalDetalhesMaterial;

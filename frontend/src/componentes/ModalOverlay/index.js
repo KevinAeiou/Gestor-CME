@@ -26,8 +26,27 @@ const ModalContent = styled.div`
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
 `
+const ModalTitle = styled.h2`
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+`
+const ModalHeader = styled.div`
+    background: #ff6616;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+const ModalBody = styled.div`
+  padding: 20px;
+`
 
 export {
     ModalOverlay,
     ModalContent,
+    ModalTitle,
+    ModalHeader,
+    ModalBody,
 } 

@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import BotaoFechar from "../BotaoFechar";
+import { deleteMaterial } from "../../servicos/materiais";
+import { useState } from "react";
+import ModalMensagem from "../ModalMensagem";
 
 
 const MaterialConteiner = styled.div`
@@ -37,25 +40,56 @@ const BotaoFecharConteiner = styled.div`
     z-index: 1;
 `
 
-function CardMaterial({ serial, nome, tipo, aoMaterialDeletado, aoFechar }) {
-    const aoDeletar = async(evento) => {
-        evento.stopPropagation()
-        aoMaterialDeletado({serial})
+function CardMaterial({ serial, nome, tipo, aoFechar, aoMaterialListaModificado }) {
+    const [modalConfirmacaoEstaAberto, setModalConfirmacaoEstaAberto] = useState(false)
+    const aoMaterialRemovido = async () => {
+        try {
+            const materialDeletado = await deleteMaterial(serial)
+            console.log('Material removido com sucesso: ', materialDeletado)
+            alert('Material removido com sucesso!')
+            setModalConfirmacaoEstaAberto(false)
+            aoMaterialListaModificado && aoMaterialListaModificado()
+        } catch (erro) {
+            const menssagem = erro.response?.data || erro.message || 'Erro ao remover material!'
+            console.error('Erro ao deletar material: ', menssagem);
+            alert(menssagem.error)
+        }
     }
+    const aoRemover = async(evento) => {
+        evento.stopPropagation()
+        setModalConfirmacaoEstaAberto(true)
+    }
+    const aoCancelar = async(evento) => {
+        evento.stopPropagation()
+        setModalConfirmacaoEstaAberto(false)
+    }
+    const aoConfirmar = async(evento) => {
+        evento.stopPropagation()
+        aoMaterialRemovido()
+    }
+
     return (
         <MaterialConteiner onClick= {aoFechar}>
-                <BotaoFecharConteiner>
-                    <BotaoFechar 
-                        onClick= {aoDeletar} 
-                        cor= '#000'
-                    >
-                        ×
-                    </BotaoFechar>
-                </BotaoFecharConteiner>
+            <BotaoFecharConteiner>
+                <BotaoFechar 
+                    onClick= {aoRemover} 
+                    cor= '#000'
+                >
+                    &times;
+                </BotaoFechar>
+            </BotaoFecharConteiner>
                 <MaterialSerial>{serial}</MaterialSerial>
                 <MaterialNome>{nome}</MaterialNome>
                 <MaterialTipo>{tipo}</MaterialTipo>
-            </MaterialConteiner>
+
+            <ModalMensagem 
+                estaAberto= {modalConfirmacaoEstaAberto}
+                aoCancelar= {aoCancelar}
+                aoConfirmar= {aoConfirmar}
+                titulo= "Confirmar remoção"
+                mensagem= {'Tem certeza que deseja excluir o material?'}
+            />
+        </MaterialConteiner>
     )
 }
 
