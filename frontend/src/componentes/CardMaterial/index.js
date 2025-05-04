@@ -40,7 +40,7 @@ const BotaoFecharConteiner = styled.div`
     z-index: 1;
 `
 
-function CardMaterial({ serial, nome, tipo, aoFechar, aoMaterialListaModificado }) {
+function CardMaterial({ serial, nome, tipo, aoFechar, aoMaterialListaModificado, funcao }) {
     const [modalConfirmacaoEstaAberto, setModalConfirmacaoEstaAberto] = useState(false)
     const aoMaterialRemovido = async () => {
         try {
@@ -67,17 +67,23 @@ function CardMaterial({ serial, nome, tipo, aoFechar, aoMaterialListaModificado 
         evento.stopPropagation()
         aoMaterialRemovido()
     }
+    const mostrarBotaoFechar = [
+        'administrador',
+        'tecnico'
+    ].includes(funcao?.toLowerCase())
 
     return (
         <MaterialConteiner onClick= {aoFechar}>
-            <BotaoFecharConteiner>
-                <BotaoFechar 
-                    onClick= {aoRemover} 
-                    cor= '#000'
-                >
-                    &times;
-                </BotaoFechar>
-            </BotaoFecharConteiner>
+            {mostrarBotaoFechar && (
+                <BotaoFecharConteiner>
+                    <BotaoFechar 
+                        onClick= {aoRemover} 
+                        cor= '#000'
+                    >
+                        &times;
+                    </BotaoFechar>
+                </BotaoFecharConteiner>
+            )}
                 <MaterialSerial>{serial}</MaterialSerial>
                 <MaterialNome>{nome}</MaterialNome>
                 <MaterialTipo>{tipo}</MaterialTipo>

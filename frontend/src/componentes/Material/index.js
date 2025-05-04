@@ -46,6 +46,7 @@ function Material({ serial, nome, tipo, data, etapa_material, funcao, aoMaterial
                 tipo= {tipo}
                 aoFechar= {() => setModalEstaAberto(true)}
                 aoMaterialListaModificado= {aoMaterialListaModificado}
+                funcao= {funcao}
             />
             <ModalDetalhesMaterial
                 estaAberto = {modalEstaAberto}
