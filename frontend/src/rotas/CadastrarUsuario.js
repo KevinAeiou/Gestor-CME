@@ -17,10 +17,9 @@ function CadastrarUsuarios() {
             const { data: novoUsuario } = await postUsuario(usuario);
             setUsuarios([...usuarios, novoUsuario])
             alert('Usuário cadastrado com sucesso!')
-      
         } catch (erro) {
-            console.error('Erro: ', erro);
-            alert(erro.response?.data?.message || 'Erro ao cadastrar usuário')
+            console.error('Erro: ', erro.response);
+            alert(erro.response?.data?.email || 'Erro ao cadastrar usuário')
         }
     }
 

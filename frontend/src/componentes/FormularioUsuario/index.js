@@ -28,8 +28,10 @@ function FormularioUsuario({ aoUsuarioAdicionado }) {
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [funcao, setFuncoes] = useState(funcoes[0].nome)
+
     const aoCriar = (evento) => {
         evento.preventDefault()
+        console.log('Nome: ', nome, ' | Email: ', email, ' | Função: ', funcao)
         aoUsuarioAdicionado({
             nome,
             email,
@@ -37,7 +39,7 @@ function FormularioUsuario({ aoUsuarioAdicionado }) {
         })
         setNome('')
         setEmail('')
-        setFuncoes('')
+        setFuncoes(funcoes[0].nome)
     }
     
     return (

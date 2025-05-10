@@ -14,14 +14,12 @@ def criar_usuario(request: Response) -> Response:
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    print(f'Erro requisição: {serializer.errors}')
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def autenticar_usuario(request: Response):
     serializer = AutenticaSerializer(data = request.data, context= {'request': request})
     if not serializer.is_valid():
-        print(f'Erro ao autenticar usuário: {serializer.errors}')
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     usuario: Usuario = serializer.validated_data['user']
